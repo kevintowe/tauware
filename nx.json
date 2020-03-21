@@ -13,6 +13,9 @@
   "projects": {
     "server-libs-intuit": {
       "tags": []
+    },
+    "intuit-node-server": {
+      "tags": []
     }
   }
 }

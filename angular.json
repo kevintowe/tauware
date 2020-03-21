@@ -14,7 +14,10 @@
               "libs/server-libs/intuit/tsconfig.lib.json",
               "libs/server-libs/intuit/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/server-libs/intuit/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/server-libs/intuit/**"
+            ]
           }
         },
         "test": {
@@ -32,7 +35,69 @@
             "tsConfig": "libs/server-libs/intuit/tsconfig.lib.json",
             "packageJson": "libs/server-libs/intuit/package.json",
             "main": "libs/server-libs/intuit/src/index.ts",
-            "assets": ["libs/server-libs/intuit/*.md"]
+            "assets": [
+              "libs/server-libs/intuit/*.md"
+            ]
+          }
+        }
+      }
+    },
+    "intuit-node-server": {
+      "root": "apps/intuit/node-server",
+      "sourceRoot": "apps/intuit/node-server/src",
+      "projectType": "application",
+      "prefix": "intuit-node-server",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/intuit/node-server",
+            "main": "apps/intuit/node-server/src/main.ts",
+            "tsConfig": "apps/intuit/node-server/tsconfig.app.json",
+            "assets": [
+              "apps/intuit/node-server/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/intuit/node-server/src/environments/environment.ts",
+                  "with": "apps/intuit/node-server/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "intuit-node-server:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/intuit/node-server/tsconfig.app.json",
+              "apps/intuit/node-server/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/intuit/node-server/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/intuit/node-server/jest.config.js",
+            "tsConfig": "apps/intuit/node-server/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }
@@ -50,5 +115,6 @@
     "@nrwl/angular:library": {
       "unitTestRunner": "jest"
     }
-  }
+  },
+  "defaultProject": "intuit-node-server"
 }
