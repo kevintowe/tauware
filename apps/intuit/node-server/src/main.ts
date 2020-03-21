@@ -1,1 +1,3 @@
-console.log('Hello World!');
+import { instantiate } from '@tauware/server-libs/intuit';
+
+instantiate();
