@@ -15,7 +15,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@tauware/server-libs/intuit": ["libs/server-libs/intuit/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

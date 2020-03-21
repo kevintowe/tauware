@@ -1,6 +1,43 @@
 {
   "version": 1,
-  "projects": {},
+  "projects": {
+    "server-libs-intuit": {
+      "root": "libs/server-libs/intuit",
+      "sourceRoot": "libs/server-libs/intuit/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/server-libs/intuit/tsconfig.lib.json",
+              "libs/server-libs/intuit/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/server-libs/intuit/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/server-libs/intuit/jest.config.js",
+            "tsConfig": "libs/server-libs/intuit/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "builder": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/libs/server-libs/intuit",
+            "tsConfig": "libs/server-libs/intuit/tsconfig.lib.json",
+            "packageJson": "libs/server-libs/intuit/package.json",
+            "main": "libs/server-libs/intuit/src/index.ts",
+            "assets": ["libs/server-libs/intuit/*.md"]
+          }
+        }
+      }
+    }
+  },
   "cli": {
     "defaultCollection": "@nrwl/angular",
     "analytics": false
